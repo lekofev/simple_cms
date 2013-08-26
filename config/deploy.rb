@@ -1,13 +1,18 @@
-set :application, "simple_csms_app"
-set :repository,  "set your repository location here"
+set :application, "simple_cms"
+set :repository,  "git@github.com:lekofev/simple_cms.git"
 
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :user, "root"
+set :use_sudo, true
+set :deploy_to , "/home/#{application}"
+set :deploy_via, :remote_cache
+
+role :web, "192.241.202.118"                          # Your HTTP server, Apache/etc
+role :app, "192.241.202.118"                          # This may be the same as your `Web` server
+role :db,  "192.241.202.118", :primary => true # This is where Rails migrations will run
+# role :db,  "your slave db-server here"
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
@@ -21,5 +26,16 @@ role :db,  "your slave db-server here"
 #   task :stop do ; end
 #   task :restart, :roles => :app, :except => { :no_release => true } do
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+#   end
+# end
+
+# desc "Check that we can access everything"
+# task :check_write_permissions do
+#   on roles(:all) do |host|
+#     if test("[ -w #{fetch(:deploy_to)} ]")
+#       info "#{fetch(:deploy_to)} is writable on #{host}"
+#     else
+#       error "#{fetch(:deploy_to)} is not writable on #{host}"
+#     end
 #   end
 # end
