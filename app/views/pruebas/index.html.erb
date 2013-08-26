@@ -1,0 +1,10 @@
+
+<%= form_for(:subject, :url => {:action => 'create'}, :html => {:multipart => true}) do |f| %>
+  
+  <%= f.text_field(:titulo) %><br><br>
+  <%= f.text_field(:texto) %><br><br>
+  <%= f.file_field(:avatar) %><br><br>
+  <%= submit_tag("Create Subject") %><br><br>
+
+<% end %>
+<hr>
