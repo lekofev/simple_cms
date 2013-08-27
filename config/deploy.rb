@@ -8,6 +8,7 @@ set :user, "root"
 set :use_sudo, true
 set :deploy_to , "/home/#{application}"
 set :deploy_via, :remote_cache
+set :ssh_options, { :forward_agent => true }
 
 role :web, "192.241.202.118"                          # Your HTTP server, Apache/etc
 role :app, "192.241.202.118"                          # This may be the same as your `Web` server
