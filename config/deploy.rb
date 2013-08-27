@@ -40,3 +40,13 @@ role :db,  "192.241.202.118", :primary => true # This is where Rails migrations 
 #     end
 #   end
 # end
+
+# desc 'Check that the repository is reachable'
+# task check: :'git:wrapper' do
+# fetch(:branch)
+# 	on roles :all do
+# 	  with git_environmental_variables do
+# 	    execute :git, :'ls-remote', 'git@github.com:lekofev/simple_cms.git'
+# 	  end
+# 	end
+# end
