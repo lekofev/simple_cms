@@ -6,7 +6,7 @@ set :scm, :git # You can set :scm explicitly or Capistrano will make an intellig
 
 set :user, "root"
 set :use_sudo, true
-set :deploy_to , "/home/#{application}"
+set :deploy_to , "/var/www/#{application}"
 set :deploy_via, :remote_cache
 set :ssh_options, { :forward_agent => true }
 
